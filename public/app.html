@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Team Notes</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">Team Notes</div>
+      <div class="user-actions">
+        <button id="theme-toggle">Toggle Theme</button>
+        <div class="notification-bell">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+          </svg>
+          <div class="notification-count">0</div>
+        </div>
+        <a href="/api/logout">Logout</a>
+      </div>
+    </header>
+    <main>
+      <div class="tabs">
+        <button class="tab-link active" data-tab="team">Team Notes</button>
+        <button class="tab-link" data-tab="personal">Personal Notes</button>
+      </div>
+      <div class="note-type-selector">
+        <label>
+          Note Type:
+          <select id="note-type">
+            <option value="team">Team</option>
+            <option value="personal">Personal</option>
+          </select>
+        </label>
+      </div>
+      <div id="team-notes" class="tab-content active">
+        <div class="notes-grid"></div>
+      </div>
+      <div id="personal-notes" class="tab-content">
+        <div class="notes-grid"></div>
+      </div>
+      <button id="add-note-btn">+</button>
+    </main>
+    <div id="note-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <form id="note-form">
+          <input type="hidden" id="note-id" />
+          <input type="text" id="note-title" placeholder="Title" required />
+          <textarea id="note-content" placeholder="Content" required></textarea>
+          <div class="note-options">
+            <label>
+              Urgency:
+              <select id="note-urgency">
+                <option value="normal">Normal</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </label>
+            <label>
+              Status:
+              <select id="note-status">
+                <option value="pending">Pending</option>
+                <option value="started">Started</option>
+                <option value="completed">Completed</option>
+              </select>
+            </label>
+            <label>
+              Assign to:
+              <select id="note-assignee"></select>
+            </label>
+          </div>
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
